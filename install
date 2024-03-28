@@ -1,0 +1,39 @@
+#!/bin/bash
+
+command_exists() {
+    command -v "$1" >/dev/null 2>&1
+}
+
+if [ "$(id -u)" -ne 0 ]; then
+    echo "This script must be run with root privileges."
+    exit 1
+fi
+
+if ! command_exists tor; then
+    echo "Tor is not installed. Installing..."
+    apt-get update
+    apt-get install -y tor
+fi
+
+if ! python3 -c "import stem" >/dev/null 2>&1; then
+    echo "Python Stem module is not installed. Installing..."
+    pip3 install stem
+fi
+
+echo "Tor and Python Stem module are installed."
+
+directory="/usr/share/ihaahi"
+if [ -d "$directory" ]; then
+    echo
+else
+    mkdir /usr/share/ihaahi
+fi
+
+mkdir /usr/share/ihaahi/T-Tor
+mv ttor.py /usr/share/ihaahi/T-Tor
+
+mv ttor /usr/local/bin
+chmod +x /usr/local/bin/ttor
+
+echo "ttor install successfully"
+
