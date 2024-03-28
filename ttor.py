@@ -99,7 +99,21 @@ def stop_tor():
 def xterm_bind():
     system('''xterm -fa "monospace-10" -title "T-Tor:IHA089" -e "bash -c 'export http_proxy=socks5://127.0.0.1:9050; export https_proxy=socks5://127.0.0.1:9050; exec bash'"''')
 
+def home_logo():
+    print("""
+        ####   ##     ##      ###        #####      #######     #######
+         ##    ##     ##     ## ##      ##   ##    ##     ##   ##     ##
+         ##    ##     ##    ##   ##    ##     ##   ##     ##   ##     ##
+         ##    #########   ##     ##   ##     ##    #######     ########
+         ##    ##     ##   #########   ##     ##   ##     ##          ##
+         ##    ##     ##   ##     ##    ##   ##    ##     ##   ##     ##
+        ####   ##     ##   ##     ##     #####      #######     #######
+
+IHA089: Navigating the Digital Realm with Code and Security - Where Programming Insights Meet Cyber Vigilance.
+    """)
+    
 def Main():
+    home_logo()
     try:
         print("you need high speed internet connection")
         ttc = int(input("How much time after you want to change terminal ip(minimum 100 sec) :"))
